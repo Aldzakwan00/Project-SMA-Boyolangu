@@ -1,25 +1,28 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import HalamanPelanggaran from './pages/HalamanPelanggaran';
+import Individu from './pages/Individu';
+import Kelas from './pages/Kelas';
+import TambahMateri from './pages/TambahMateri';
+import NamaPerKelas from './pages/NamaPerKelas';
+import TemplateHasil from './pages/TemplateHasil';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div className=''>
-        <nav className='bg-gray-800 p-4'>
-          <div className='flex items-center justify-between'>
-            <div className='text-white text-lg font-bold'>My App</div>
-            <ul className='flex space-x-4'>
-              <li><a href='#' className='text-gray-300 hover:text-white'>Home</a></li>
-              <li><a href='#' className='text-gray-300 hover:text-white'>About</a></li>
-              <li><a href='#' className='text-gray-300 hover:text-white'>Contact</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="halaman-pelanggaran" element={<HalamanPelanggaran />} />
+        <Route path="individu" element={<Individu />} />
+        <Route path="kelas" element={<Kelas />} />
+        <Route path="tambah-materi" element={<TambahMateri />} />
+        <Route path="kelas/nama-per-kelas" element={<NamaPerKelas />} /> 
+        <Route path="template-hasil" element={<TemplateHasil />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
