@@ -7,7 +7,6 @@ const TemplateHasil = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [catatan, setCatatan] = useState('');
 
-  // Ambil catatan dari localStorage saat pertama kali render
   useEffect(() => {
     const savedCatatan = localStorage.getItem('catatan');
     if (savedCatatan) {
@@ -19,7 +18,6 @@ const TemplateHasil = () => {
     }
   }, []);
 
-  // Simpan ke localStorage setiap kali catatan berubah
   useEffect(() => {
     localStorage.setItem('catatan', catatan);
   }, [catatan]);
@@ -31,7 +29,7 @@ const TemplateHasil = () => {
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
-    window.location.reload(); // reload after print
+    window.location.reload(); 
   };
 
   return (
@@ -45,7 +43,6 @@ const TemplateHasil = () => {
         </h1>
 
         <div className="flex w-full mt-6">
-          {/* Foto Siswa */}
           <div className="w-1/3 flex justify-center items-start">
             <img
               src={fotosiswa}
@@ -54,7 +51,6 @@ const TemplateHasil = () => {
             />
           </div>
 
-          {/* Data Siswa */}
           <div className="w-2/3 pl-6 flex flex-col justify-center">
             <table className="w-full text-lg">
               <tbody>
@@ -83,7 +79,6 @@ const TemplateHasil = () => {
           </div>
         </div>
 
-        {/* Keterangan */}
         <div className="mt-6">
           <h2 className="text-xl font-semibold mb-2 text-indigo-600">Keterangan</h2>
           <p className="text-gray-700 text-justify">
@@ -93,7 +88,6 @@ const TemplateHasil = () => {
           </p>
         </div>
 
-        {/* Catatan */}
         <div className="mt-6 relative">
           <h2 className="text-xl font-semibold mb-2 text-indigo-600">Catatan / Apresiasi Guru</h2>
 

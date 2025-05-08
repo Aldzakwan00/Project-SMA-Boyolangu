@@ -36,7 +36,7 @@ const Kelas = () => {
           onChange={handleFilterChange}
           className="mt-1 p-3 w-[12rem] border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         >
-          <option value="">Tingkat Kelas</option>
+          <option value="">All</option>
           <option value="x">X</option>
           <option value="xi">XI</option>
           <option value="xii">XII</option>

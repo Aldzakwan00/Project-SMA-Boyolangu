@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const dummyData = {
   x: {
@@ -35,6 +35,7 @@ const Individu = () => {
   const [kelas, setKelas] = useState('');
   const [nama, setNama] = useState('');
   const [selectedSiswa, setSelectedSiswa] = useState(null);
+  const [submitted, setSubmitted] = useState(false); // untuk cek apakah tombol submit sudah ditekan
 
   const getSiswaList = () => {
     return dummyData[tingkat]?.[kelas] || [];
@@ -42,6 +43,7 @@ const Individu = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true);
     if (tingkat && kelas && nama) {
       const siswa = getSiswaList().find((s) => s.name === nama);
       setSelectedSiswa(siswa || null);
@@ -68,6 +70,7 @@ const Individu = () => {
                 setKelas('');
                 setNama('');
                 setSelectedSiswa(null);
+                setSubmitted(false);
               }}
               required
               className='mt-1 p-3 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
@@ -89,6 +92,7 @@ const Individu = () => {
                 setKelas(e.target.value);
                 setNama('');
                 setSelectedSiswa(null);
+                setSubmitted(false);
               }}
               required
               className='mt-1 p-3 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
@@ -131,18 +135,29 @@ const Individu = () => {
       </div>
 
       {/* Result Section */}
-      <div className="space-y-3 mt-8 w-full max-w-lg">
-        <h2>Hasil :</h2>
-        {selectedSiswa && (
-          <Link
-            to="/template-hasil"
-            className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md hover:bg-gray-50 transition"
-          >
-            <div className="text-lg font-medium text-gray-800">{selectedSiswa.name}</div>
-            <div className="text-sm text-gray-600">Poin: {selectedSiswa.poin}</div>
-          </Link>
-        )}
-      </div>
+      {submitted && (
+        <div className="space-y-4 mt-10 w-full max-w-lg text-left">
+          {selectedSiswa ? (
+            <>
+              <h2 className="text-xl font-semibold text-gray-700 border-b pb-2">Hasil:</h2>
+              <Link
+                to="/template-hasil"
+                className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-5 bg-white border border-gray-200 rounded-xl shadow hover:shadow-md hover:bg-gray-50 transition"
+              >
+                <div>
+                  <div className="text-lg font-bold text-indigo-600">{selectedSiswa.name}</div>
+                  <div className="text-sm text-gray-500">Tingkat: {tingkat.toUpperCase()} - Kelas: {kelas}</div>
+                </div>
+                <div className="text-indigo-800 font-semibold text-md bg-indigo-100 px-4 py-2 rounded-full">
+                  Poin: {selectedSiswa.poin}
+                </div>
+              </Link>
+            </>
+          ) : (
+            <div className="text-red-500 font-medium">Siswa tidak ditemukan. Pastikan semua pilihan diisi dengan benar.</div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

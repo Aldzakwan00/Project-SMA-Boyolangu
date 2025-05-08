@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import logo from '../assets/img/SMAN_1_BOYOLANGU_LOGO.png';
+import { useAuth } from '../../contexts/AuthContext';
+import logo from '../../assets/img/SMAN_1_BOYOLANGU_LOGO.png'; // Ganti dengan path logo Anda
 
-const Header = ({ toggleSidebar }) => {
+const HeaderSiswa = ({ toggleSidebar }) => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
@@ -90,4 +90,4 @@ const Header = ({ toggleSidebar }) => {
   );
 };
 
-export default Header;
+export default HeaderSiswa;
