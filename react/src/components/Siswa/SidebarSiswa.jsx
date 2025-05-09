@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SidebarSiswa = ({ open }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   return (
     <aside
