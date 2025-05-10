@@ -15,7 +15,7 @@ const Layout = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  if (!user) return null; // Optional: tampilkan loader jika diperlukan
+  if (!user) return null;
 
   const isSiswa = user.role === 'siswa';
 
